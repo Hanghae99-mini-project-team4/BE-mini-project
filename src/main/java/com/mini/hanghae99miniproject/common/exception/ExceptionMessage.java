@@ -1,4 +1,4 @@
-package com.mini.hanghae99miniproject.common;
+package com.mini.hanghae99miniproject.common.exception;
 
 import lombok.Getter;
 
@@ -23,9 +23,8 @@ public enum ExceptionMessage {
     // post
     NO_EXIST_POSTING_EXCEPTION_MSG(404, "해당 게시글이 존재하지 않습니다."),
 
-
     // comment
-    NO_EXIST_COMMENT_EXCEPTION_MSG(400, "해당 댓글이 존재하지 않습니다."),
+    NO_EXIST_COMMENT_EXCEPTION_MSG(400, "해당 댓글이 존재하지 않습니다.");
 
 
 
