@@ -1,4 +1,4 @@
-package com.mini.hanghae99miniproject.common.entity;
+package com.mini.hanghae99miniproject.common.exception.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
