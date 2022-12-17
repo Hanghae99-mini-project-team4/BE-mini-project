@@ -44,15 +44,24 @@ public class CommentService {
         Comment comment = commentRepository.findById(commentId).orElseThrow(
                 () -> new IllegalArgumentException(NO_EXIST_COMMENT_ERROR_MSG.getMsg())
         );
-        //유저 정보 확인
-        Member memberinfo = memberRepository.findById(member.getId()).orElseThrow(
-                () -> new IllegalArgumentException(USER_NOT_FOUND_ERROR_MSG.getMsg())
-        );
+        //댓글을 작성한 사람과 유저의 정보가 일치하는지 확인.
+        if(!comment.getMember().getId().equals(member.getId())){
+            throw new IllegalArgumentException(USER_NOT_MATCH_ERROR_MSG.getMsg());
+        }
         //댓글 내용 수정
         comment.update(content);
         return new CommentUpdateResponseDto(comment);
     }
 
     public void deleteComment(Member member, Long commentId) {
+        //댓글 존재 확인
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
+                () -> new IllegalArgumentException(NO_EXIST_COMMENT_ERROR_MSG.getMsg())
+        );
+        //댓글을 작성한 사람과 유저의 정보가 일치하는지 확인.
+        if(!comment.getMember().getId().equals(member.getId())){
+            throw new IllegalArgumentException(USER_NOT_MATCH_ERROR_MSG.getMsg());
+        }
+        commentRepository.deleteById(commentId);
     }
 }

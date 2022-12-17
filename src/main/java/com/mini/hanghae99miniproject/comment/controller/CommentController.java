@@ -29,7 +29,7 @@ public class CommentController {
     //댓글 수정
     @PutMapping("/api/posts/comments/{id}")
     public DataResponse<CommentUpdateResponseDto> updateComment(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long commentId, @RequestBody CommentUpdateRequestDto requestDto){
-        CommentUpdateResponseDto commentUpdateResponseDto = commentService.createComment(requestDto.toCommentDto(), userDetails.getMember(), commentId);
+        CommentUpdateResponseDto commentUpdateResponseDto = commentService.updateComment(requestDto.toCommentDto(), userDetails.getMember(), commentId);
         return new DataResponse<>(UPDATE_COMMENT_SUCCESS_MSG, commentUpdateResponseDto);
     }
 
