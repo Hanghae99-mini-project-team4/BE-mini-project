@@ -13,6 +13,10 @@ public class MemberController {
     private final MemberService memberService;
     @PostMapping("/signup")
     public Response signup(@RequestBody SignupRequestDto signupRequestDto){
+        // json으로 보내는지 form으로 보내는지! -> @RequestBody
         return memberService.signup(signupRequestDto);
     }
+
+    //@PostMapping("/login")
+    //public Response login()
 }
