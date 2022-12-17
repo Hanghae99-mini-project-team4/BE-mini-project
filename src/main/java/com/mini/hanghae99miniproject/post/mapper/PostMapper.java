@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PostMapper {
 
+    // Dto -> Entity
     public Post toEntity(RequestPostDto requestDto, Member member) {
         return Post.builder()
                 .title(requestDto.getTitle())
@@ -17,6 +18,7 @@ public class PostMapper {
                 .build();
     }
 
+    // Entity -> Dto
     public ResponsePostDto postToResponsePostDto(Post post) {
         ResponsePostDto responsePostDto = new ResponsePostDto();
 
