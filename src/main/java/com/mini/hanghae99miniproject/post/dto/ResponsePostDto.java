@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class ResponsePostDto {
 
-    //게시글 전체 조회, 상세 조회에 사용될 DTO
+    //게시글 선택 조회에 사용될 DTO
     private Long id;
     private String title;
     private String content;
@@ -24,6 +24,7 @@ public class ResponsePostDto {
     private LocalDateTime lastModifiedAt;
 
     //순환 참조 막기 위해 List 제네릭 자료형을 Entity 대신 DTO로 변경
+    //추후에 변경
 //    private List<CommentSaveResponseDto> comments = new ArrayList<>();
 
     public ResponsePostDto (Post post) {
