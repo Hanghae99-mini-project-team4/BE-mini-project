@@ -48,10 +48,23 @@ public class PostService {
     //게시글 선택 조회
     @Transactional(readOnly = true)
     public ResponsePostDto findOnePost(Long id) {
-        //DB에서 게시글 하나 읽어와서 조회
+        //DB에서 게시글 하나 읽어와서 조회 없으면 예외처리
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException(NO_EXIST_POSTING_ERROR_MSG.getMsg())
         );
+
+        return new ResponsePostDto(post);
+    }
+
+    //게시글 수정
+    public ResponsePostDto updatePost(Long id, RequestPostDto requestPostDto, Member member) {
+        //게시글이 있는지 없는지 조회 없으면 예외처리
+        Post post = postRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException(NO_EXIST_POSTING_ERROR_MSG.getMsg())
+        );
+
+        post.update(requestPostDto.getTitle(), requestPostDto.getContent());
+        postRepository.save(post);
 
         return new ResponsePostDto(post);
     }

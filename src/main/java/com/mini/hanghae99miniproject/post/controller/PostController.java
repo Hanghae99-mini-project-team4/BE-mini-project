@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.mini.hanghae99miniproject.common.response.ResponseMessage.CREATE_POSTING_SUCCESS_MSG;
-import static com.mini.hanghae99miniproject.common.response.ResponseMessage.READ_POSTING_SUCCESS_MSG;
+import static com.mini.hanghae99miniproject.common.response.ResponseMessage.*;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -39,6 +38,13 @@ public class PostController {
     public DataResponse<ResponsePostDto> findOnePost(@PathVariable Long id) {
         ResponsePostDto response = postService.findOnePost(id);
         return new DataResponse<>(READ_POSTING_SUCCESS_MSG, response);
+    }
+
+    //게시글 수정
+    @PutMapping("{id}")
+    public DataResponse<ResponsePostDto> updatePost(@PathVariable Long id, @RequestBody RequestPostDto requestPostDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        ResponsePostDto response = postService.updatePost(id, requestPostDto, userDetails.getMember());
+        return new DataResponse<>(UPDATE_POSTING_SUCCESS_MSG, response);
     }
 
 
