@@ -52,4 +52,7 @@ public class CommentService {
         comment.update(content);
         return new CommentUpdateResponseDto(comment);
     }
+
+    public void deleteComment(Member member, Long commentId) {
+    }
 }

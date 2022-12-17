@@ -6,13 +6,13 @@ import com.mini.hanghae99miniproject.comment.dto.CommentUpdateRequestDto;
 import com.mini.hanghae99miniproject.comment.dto.CommentUpdateResponseDto;
 import com.mini.hanghae99miniproject.comment.service.CommentService;
 import com.mini.hanghae99miniproject.common.response.DataResponse;
+import com.mini.hanghae99miniproject.common.response.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import static com.mini.hanghae99miniproject.common.response.ResponseMessage.CREATE_COMMENT_SUCCESS_MSG;
-import static com.mini.hanghae99miniproject.common.response.ResponseMessage.UPDATE_COMMENT_SUCCESS_MSG;
+import static com.mini.hanghae99miniproject.common.response.ResponseMessage.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,4 +32,12 @@ public class CommentController {
         CommentUpdateResponseDto commentUpdateResponseDto = commentService.createComment(requestDto.toCommentDto(), userDetails.getMember(), commentId);
         return new DataResponse<>(UPDATE_COMMENT_SUCCESS_MSG, commentUpdateResponseDto);
     }
+
+    //댓글 삭제
+    @DeleteMapping("/api/posts/comments/{id}")
+    public Response deleteComment(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long commentId) {
+        commentService.deleteComment(userDetails.getMember(), commentId);
+        return new Response((DELETE_COMMENT_SUCCESS_MSG));
+    }
+
 }
