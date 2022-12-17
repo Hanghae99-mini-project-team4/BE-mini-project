@@ -37,6 +37,10 @@ public class Comment extends Timestamped {
         this.member = member;
         this.post = post;
     }
+
+    public void update(String content) {
+        this.content = content;
+    }
 }
 
 
