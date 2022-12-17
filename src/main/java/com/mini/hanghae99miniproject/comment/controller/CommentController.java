@@ -1,7 +1,9 @@
 package com.mini.hanghae99miniproject.comment.controller;
 
 import com.mini.hanghae99miniproject.comment.dto.CommentSaveRequestDto;
+import com.mini.hanghae99miniproject.comment.dto.CommentSaveResponseDto;
 import com.mini.hanghae99miniproject.comment.service.CommentService;
+import com.mini.hanghae99miniproject.common.response.DataResponse;
 import com.mini.hanghae99miniproject.common.response.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,8 +22,8 @@ public class CommentController {
 
     //댓글 작성
     @PostMapping("/api/posts/{id}/comments")
-    public Response createCommnet(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long postId, @RequestBody CommentSaveRequestDto requestDto) {
-        commentService.createComment(requestDto.toCommentDto(), userDetails.getMember(), postId);
-        return new Response(CREATE_COMMENT_SUCCESS_MSG);
+    public DataResponse<CommentSaveResponseDto> createCommnet(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long postId, @RequestBody CommentSaveRequestDto requestDto) {
+        CommentSaveResponseDto commentSaveResponseDto = commentService.createComment(requestDto.toCommentDto(), userDetails.getMember(), postId);
+        return new DataResponse<>(CREATE_COMMENT_SUCCESS_MSG,commentSaveResponseDto);
     }
 }
