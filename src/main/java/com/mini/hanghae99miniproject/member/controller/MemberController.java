@@ -1,11 +1,15 @@
 package com.mini.hanghae99miniproject.member.controller;
 
 import com.mini.hanghae99miniproject.common.response.Response;
+import com.mini.hanghae99miniproject.member.dto.LoginRequestDto;
 import com.mini.hanghae99miniproject.member.dto.SignupRequestDto;
 import com.mini.hanghae99miniproject.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
@@ -20,8 +24,8 @@ public class MemberController {
         return memberService.signup(signupRequestDto);
     }
 
-
-
-    //@PostMapping("/login")
-    //public Response login()
+    @PostMapping("/login")
+    public Response login(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse response) {
+        return memberService.login(loginRequestDto,response);
+    }
 }
