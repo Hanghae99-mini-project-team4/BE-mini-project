@@ -47,16 +47,13 @@ public class WebSecurityConfig {
         http.csrf().disable();
         // 세션정책 중지
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        // api 허용적책 설정
+        // api 허용정책 설정
         http.authorizeRequests()
-                //.antMatchers(HttpMethod.POST,new String[]{"/api/members/signup","api/members/login"}).permitAll()
-                .antMatchers(HttpMethod.POST,"/api/members/signup").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/members/login").permitAll()
+                .antMatchers(HttpMethod.POST, new String[]{"/api/members/signup","/api/members/login"}).permitAll()
                 .antMatchers(HttpMethod.GET, new String[]{"/api/posts","/api/posts/{id}"}).permitAll()
                 .anyRequest().authenticated()
-                // JWT 인증/인가를 사용하기 위한 설정
+                // JWT 인증/인가를 사용하기 위해 JwtAuthFilter 적용
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
 }
