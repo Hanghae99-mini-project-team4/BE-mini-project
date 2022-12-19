@@ -1,7 +1,10 @@
 package com.mini.hanghae99miniproject.member.repository;
 
-import javax.persistence.Entity;
+import com.mini.hanghae99miniproject.member.entity.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Entity
-public class MemberRepository {
+import java.util.Optional;
+
+public interface MemberRepository extends JpaRepository<Member, Long> {
+    Optional<Member> findByUserid(String userid);
 }
