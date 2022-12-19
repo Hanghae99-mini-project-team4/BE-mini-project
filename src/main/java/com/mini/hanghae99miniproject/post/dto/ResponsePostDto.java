@@ -1,6 +1,10 @@
 package com.mini.hanghae99miniproject.post.dto;
 
+
 import lombok.Builder;
+
+import com.mini.hanghae99miniproject.post.entity.Post;
+
 import lombok.Getter;
 
 import java.time.LocalDateTime;

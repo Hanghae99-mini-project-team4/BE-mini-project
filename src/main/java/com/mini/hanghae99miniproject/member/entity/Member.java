@@ -6,12 +6,7 @@ import com.mini.hanghae99miniproject.post.entity.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +27,20 @@ public class Member {
     @Column
     private String nickname;
 
+    @Column
+    @Enumerated(value = EnumType.STRING)
+    private MemberRoleEnum role;
+
     @OneToMany(mappedBy = "member")
     private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
     private List<Post> posts = new ArrayList<>();
+
+    public Member(String userid, String password, String nickname, MemberRoleEnum role) {
+        this.userid = userid;
+        this.password = password;
+        this.nickname = nickname;
+        this.role = role;
+    }
 }

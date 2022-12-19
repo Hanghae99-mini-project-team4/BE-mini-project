@@ -5,6 +5,7 @@ import com.mini.hanghae99miniproject.common.response.Response;
 import com.mini.hanghae99miniproject.post.dto.RequestPostDto;
 import com.mini.hanghae99miniproject.post.dto.ResponsePostDto;
 import com.mini.hanghae99miniproject.post.service.PostService;
+import com.mini.hanghae99miniproject.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
