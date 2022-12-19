@@ -17,7 +17,6 @@ import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.US
 
 @RestControllerAdvice
 public class CommonExceptionHandler {
-
     @ExceptionHandler({IllegalArgumentException.class})
     public ExceptionResponse handleBadRequest(IllegalArgumentException e) {
 
