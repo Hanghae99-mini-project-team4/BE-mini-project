@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.NO_EXIST_POSTING_ERROR_MSG;
+import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.USER_NOT_MATCH_ERROR_MSG;
 
 
 @Service
@@ -33,7 +34,7 @@ public class PostService {
         Post post = postMapper.toEntity(requestPostDto, member);
         postRepository.save(post);
 
-        return postMapper.postToREsponsePostDtoALL(post);
+        return postMapper.postToResponsePostDtoALL(post);
     }
 
     //게시글 전체 조회
@@ -43,7 +44,7 @@ public class PostService {
         List<Post> postList = postRepository.findAll();
         List<ResponsePostDto> result = new ArrayList<>();
         for (Post post : postList) {
-            result.add(postMapper.postToREsponsePostDtoALL(post));
+            result.add(postMapper.postToResponsePostDtoALL(post));
         }
         return result;
     }
@@ -56,10 +57,11 @@ public class PostService {
                 () -> new IllegalArgumentException(NO_EXIST_POSTING_ERROR_MSG.getMsg())
         );
 
-        List<Comment> comments = commentRepository.findAll();
-        List<CommentDto> commentList = new ArrayList<>();
+        //선택한 게시글에서 작성한 댓글만 조회
+        List<Comment> comments = commentRepository.findAllByPostOrderByCreatedAtDesc(post);
+        List<ResponseComment> commentList = new ArrayList<>();
         for (Comment comment : comments) {
-            commentList.add(new CommentDto(comment));
+            commentList.add(new ResponseComment(comment));
         }
 
         return postMapper.postToResponsePostDto(post, commentList);
@@ -73,17 +75,27 @@ public class PostService {
                 () -> new IllegalArgumentException(NO_EXIST_POSTING_ERROR_MSG.getMsg())
         );
 
+        // 게시글 작성자와 멤버 정보가 일치하는지 확인
+        if(!post.getMember().getId().equals(member.getId())) {
+            throw new IllegalArgumentException(USER_NOT_MATCH_ERROR_MSG.getMsg());
+        }
+
         post.update(requestPostDto.getTitle(), requestPostDto.getContent());
 
-        return postMapper.postToREsponsePostDtoALL(post);
+        return postMapper.postToResponsePostDtoALL(post);
     }
 
     //게시글 삭제
     @Transactional
     public void deletePost(Long id, Member member) {
-        Post post = postRepository.findByIdAndMemberId(id,member.getId()).orElseThrow(
+        Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException(NO_EXIST_POSTING_ERROR_MSG.getMsg())
         );
+
+        // 게시글 작성자와 멤버 정보가 일치하는지 확인
+        if(!post.getMember().getId().equals(member.getId())) {
+            throw new IllegalArgumentException(USER_NOT_MATCH_ERROR_MSG.getMsg());
+        }
 
         // 해당 게시글에 관련된 댓글들 삭제
         commentRepository.deleteCommentByPost(post);

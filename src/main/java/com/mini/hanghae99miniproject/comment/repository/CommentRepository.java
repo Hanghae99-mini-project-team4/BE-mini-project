@@ -11,4 +11,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     //All로 했을 때 관련 없는 게시글이 지워지는지 안지워지는지 테스트
     void deleteAllByPost(Post post);
+
+    List<Comment> findAllByPostOrderByCreatedAtDesc(Post post);
 }

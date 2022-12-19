@@ -3,19 +3,11 @@ package com.mini.hanghae99miniproject.post.entity;
 import com.mini.hanghae99miniproject.comment.entity.Comment;
 import com.mini.hanghae99miniproject.common.entity.Timestamped;
 import com.mini.hanghae99miniproject.member.entity.Member;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
