@@ -13,6 +13,7 @@ public class CommentMapper {
     public ResponseComment toResponse(Comment comment){
         return ResponseComment.builder()
                 .id(comment.getId())
+                .userid(comment.getMember().getUserid())
                 .content(comment.getContent())
                 .nickname(comment.getMember().getNickname())
                 .createdAt(comment.getCreatedAt())

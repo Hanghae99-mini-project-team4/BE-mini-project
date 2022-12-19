@@ -11,6 +11,7 @@ public class CommentSaveDto  {
 
     @Builder
     public CommentSaveDto(String content){
+
         this.content = content;
     }
 }

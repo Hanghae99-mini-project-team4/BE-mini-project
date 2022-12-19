@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Builder
 public class ResponseComment {
     private Long id;
+    private String userid;
     private String content;
     private String nickname;
     private LocalDateTime createdAt;

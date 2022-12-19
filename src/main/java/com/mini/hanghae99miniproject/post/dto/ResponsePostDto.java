@@ -1,13 +1,11 @@
 package com.mini.hanghae99miniproject.post.dto;
 
-import com.mini.hanghae99miniproject.comment.entity.Comment;
 import com.mini.hanghae99miniproject.post.entity.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 @Getter
 @Setter
