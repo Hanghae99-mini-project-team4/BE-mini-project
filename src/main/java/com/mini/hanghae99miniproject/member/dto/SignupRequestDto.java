@@ -11,6 +11,7 @@ import javax.validation.constraints.Pattern;
 public class SignupRequestDto {
     @NotBlank
     @Email
+    @Pattern(regexp="^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
     private String userid;
     @NotBlank
     @Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,}")
@@ -21,7 +22,6 @@ public class SignupRequestDto {
     // (?=\\S+$) => ?=\\S :: 공백문자를 제외하고(라는 의미)
     @NotBlank
     private String nickname;
-
     private boolean isAdmin = false;
     private MemberRoleEnum role;
     private String adminToken = "";
