@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.ADMIN_TOKEN_MISMATCH_ERROR_MSG;
+import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.DUPLICATE_NICK_ERROR_MSG;
 import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.DUPLICATE_USER_ERROR_MSG;
 
 @Service
@@ -66,5 +67,21 @@ public class MemberService {
         }
 
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(member.getUserid(),member.getRole()));
+    }
+
+    @Transactional
+    public void useridcheck(String userid) {
+        Optional<Member> found = memberRepository.findByUserid(userid);
+        if(found.isPresent()) {
+            throw new IllegalArgumentException(DUPLICATE_USER_ERROR_MSG.getMsg());
+        }
+    }
+
+    @Transactional
+    public void nicknamecheck(String nickname) {
+        Optional<Member> found = memberRepository.findByNickname(nickname);
+        if(found.isPresent()) {
+            throw new IllegalArgumentException(DUPLICATE_NICK_ERROR_MSG.getMsg());
+        }
     }
 }
