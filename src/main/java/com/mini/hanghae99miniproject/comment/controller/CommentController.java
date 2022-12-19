@@ -1,6 +1,7 @@
 package com.mini.hanghae99miniproject.comment.controller;
 
-import com.mini.hanghae99miniproject.comment.dto.*;
+import com.mini.hanghae99miniproject.comment.dto.RequestComment;
+import com.mini.hanghae99miniproject.comment.dto.ResponseComment;
 import com.mini.hanghae99miniproject.comment.service.CommentService;
 import com.mini.hanghae99miniproject.common.response.DataResponse;
 import com.mini.hanghae99miniproject.common.response.Response;

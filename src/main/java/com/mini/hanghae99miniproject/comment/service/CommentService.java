@@ -1,8 +1,9 @@
 package com.mini.hanghae99miniproject.comment.service;
 
-import com.mini.hanghae99miniproject.comment.dto.*;
 import com.mini.hanghae99miniproject.comment.entity.Comment;
 import com.mini.hanghae99miniproject.comment.mapper.CommentMapper;
+import com.mini.hanghae99miniproject.comment.dto.RequestComment;
+import com.mini.hanghae99miniproject.comment.dto.ResponseComment;
 import com.mini.hanghae99miniproject.comment.repository.CommentRepository;
 import com.mini.hanghae99miniproject.common.exception.ExceptionMessage;
 import com.mini.hanghae99miniproject.member.entity.Member;

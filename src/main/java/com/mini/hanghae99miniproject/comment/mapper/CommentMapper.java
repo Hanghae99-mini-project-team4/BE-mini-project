@@ -1,8 +1,8 @@
 package com.mini.hanghae99miniproject.comment.mapper;
 
+import com.mini.hanghae99miniproject.comment.entity.Comment;
 import com.mini.hanghae99miniproject.comment.dto.RequestComment;
 import com.mini.hanghae99miniproject.comment.dto.ResponseComment;
-import com.mini.hanghae99miniproject.comment.entity.Comment;
 import com.mini.hanghae99miniproject.member.entity.Member;
 import com.mini.hanghae99miniproject.post.entity.Post;
 import org.springframework.stereotype.Component;
