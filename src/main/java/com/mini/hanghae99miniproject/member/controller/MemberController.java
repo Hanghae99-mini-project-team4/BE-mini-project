@@ -6,6 +6,7 @@ import com.mini.hanghae99miniproject.member.dto.LoginRequestDto;
 import com.mini.hanghae99miniproject.member.dto.SignupRequestDto;
 import com.mini.hanghae99miniproject.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
