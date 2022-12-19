@@ -1,13 +1,12 @@
 package com.mini.hanghae99miniproject.post.dto;
 
 
+import com.mini.hanghae99miniproject.comment.dto.ResponseComment;
 import lombok.Builder;
-
-import com.mini.hanghae99miniproject.post.entity.Post;
-
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Builder
@@ -21,6 +20,6 @@ public class ResponsePostDto {
     private String nickname;
     private LocalDateTime createdAt;
     private LocalDateTime lastModifiedAt;
-//    private List<ResponseComment> commentList = new ArrayList<>();
+    private List<ResponseComment> commentList;
 
 }

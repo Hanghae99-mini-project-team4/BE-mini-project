@@ -2,6 +2,7 @@ package com.mini.hanghae99miniproject.post.service;
 
 import com.mini.hanghae99miniproject.comment.dto.ResponseComment;
 import com.mini.hanghae99miniproject.comment.entity.Comment;
+import com.mini.hanghae99miniproject.comment.mapper.CommentMapper;
 import com.mini.hanghae99miniproject.comment.repository.CommentRepository;
 import com.mini.hanghae99miniproject.member.entity.Member;
 import com.mini.hanghae99miniproject.post.dto.RequestPostDto;
@@ -27,6 +28,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
     private final PostMapper postMapper;
+    private final CommentMapper commentMapper;
 
     //게시글 등록
     @Transactional
@@ -62,7 +64,7 @@ public class PostService {
         List<Comment> comments = commentRepository.findAllByPostOrderByCreatedAtDesc(post);
         List<ResponseComment> commentList = new ArrayList<>();
         for (Comment comment : comments) {
-            commentList.add(new ResponseComment(comment));
+            commentList.add(commentMapper.toResponse(comment));
         }
 
         return postMapper.postToResponsePostDto(post, commentList);
