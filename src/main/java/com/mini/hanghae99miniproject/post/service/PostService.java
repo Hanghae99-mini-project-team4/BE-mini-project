@@ -1,9 +1,9 @@
 package com.mini.hanghae99miniproject.post.service;
 
+import com.mini.hanghae99miniproject.comment.entity.Comment;
 import com.mini.hanghae99miniproject.comment.repository.CommentRepository;
 import com.mini.hanghae99miniproject.member.entity.Member;
 import com.mini.hanghae99miniproject.post.dto.RequestPostDto;
-import com.mini.hanghae99miniproject.post.dto.ResponseAllPostDto;
 import com.mini.hanghae99miniproject.post.dto.ResponsePostDto;
 import com.mini.hanghae99miniproject.post.entity.Post;
 import com.mini.hanghae99miniproject.post.mapper.PostMapper;
@@ -33,17 +33,17 @@ public class PostService {
         Post post = postMapper.toEntity(requestPostDto, member);
         postRepository.save(post);
 
-        return postMapper.postToResponsePostDto(post);
+        return postMapper.postToREsponsePostDtoALL(post);
     }
 
     //게시글 전체 조회
     @Transactional(readOnly = true)
-    public List<ResponseAllPostDto> findAllPost() {
+    public List<ResponsePostDto> findAllPost() {
         //DB에 저장되어있는 게시글 전부 가져오기
         List<Post> postList = postRepository.findAll();
-        List<ResponseAllPostDto> result = new ArrayList<>();
+        List<ResponsePostDto> result = new ArrayList<>();
         for (Post post : postList) {
-            result.add(new ResponseAllPostDto(post));
+            result.add(postMapper.postToREsponsePostDtoALL(post));
         }
         return result;
     }
@@ -56,10 +56,17 @@ public class PostService {
                 () -> new IllegalArgumentException(NO_EXIST_POSTING_ERROR_MSG.getMsg())
         );
 
-        return new ResponsePostDto(post);
+        List<Comment> comments = commentRepository.findAll();
+        List<CommentDto> commentList = new ArrayList<>();
+        for (Comment comment : comments) {
+            commentList.add(new CommentDto(comment));
+        }
+
+        return postMapper.postToResponsePostDto(post, commentList);
     }
 
     //게시글 수정
+    @Transactional
     public ResponsePostDto updatePost(Long id, RequestPostDto requestPostDto, Member member) {
         //게시글이 있는지 없는지 조회 없으면 예외처리
         Post post = postRepository.findById(id).orElseThrow(
@@ -67,14 +74,14 @@ public class PostService {
         );
 
         post.update(requestPostDto.getTitle(), requestPostDto.getContent());
-        postRepository.save(post);
 
-        return new ResponsePostDto(post);
+        return postMapper.postToREsponsePostDtoALL(post);
     }
 
     //게시글 삭제
+    @Transactional
     public void deletePost(Long id, Member member) {
-        Post post = postRepository.findById(id).orElseThrow(
+        Post post = postRepository.findByIdAndMemberId(id,member.getId()).orElseThrow(
                 () -> new IllegalArgumentException(NO_EXIST_POSTING_ERROR_MSG.getMsg())
         );
 

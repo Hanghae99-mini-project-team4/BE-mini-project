@@ -30,8 +30,8 @@ public class PostController {
 
     //게시글 전체 조회
     @GetMapping("")
-    public DataResponse<List<ResponseAllPostDto>> findAllPost() {
-        List<ResponseAllPostDto> response = postService.findAllPost();
+    public DataResponse<List<ResponsePostDto>> findAllPost() {
+        List<ResponsePostDto> response = postService.findAllPost();
         return new DataResponse<>(READ_POSTING_SUCCESS_MSG, response);
     }
 

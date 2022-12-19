@@ -2,16 +2,13 @@ package com.mini.hanghae99miniproject.post.dto;
 
 import com.mini.hanghae99miniproject.comment.entity.Comment;
 import com.mini.hanghae99miniproject.post.entity.Post;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @Getter
-@Setter
-@NoArgsConstructor
+@Builder
 public class ResponsePostDto {
 
     //게시글 선택 조회에 사용될 DTO
@@ -23,21 +20,18 @@ public class ResponsePostDto {
     private LocalDateTime createdAt;
     private LocalDateTime lastModifiedAt;
 
-    //순환 참조 막기 위해 List 제네릭 자료형을 Entity 대신 DTO로 변경
-    //추후에 변경
-//    private List<CommentSaveResponseDto> comments = new ArrayList<>();
+//    private List<CommentSaveResponseDto> commentList = new ArrayList<>();
 
-    public ResponsePostDto (Post post) {
-        this.id = post.getId();
-        this.title = post.getTitle();
-        this.content = post.getContent();
-        this.userid = post.getMember().getUserid();
-        this.nickname = post.getMember().getNickname();
-        this.createdAt = post.getCreatedAt();
-        this.lastModifiedAt = post.getLastModifiedAt();
-//        for (Comment comment:post.getCommentList()) {
-//            this.comments.add(new CommentSaveResponseDto(comment));
-//        }
-    }
+//    @Builder
+//    public ResponsePostDto (Long id, String title) {
+//        this.id = post.getId();
+//        this.title = post.getTitle();
+//        this.content = post.getContent();
+//        this.userid = post.getMember().getUserid();
+//        this.nickname = post.getMember().getNickname();
+//        this.createdAt = post.getCreatedAt();
+//        this.lastModifiedAt = post.getLastModifiedAt();
+////        this.commentList = post.getCommentList();
+////    }
 
 }
