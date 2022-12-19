@@ -56,5 +56,8 @@ public class PostController {
         return new Response(DELETE_POSTING_SUCCESS_MSG);
     }
 
+    //게시글 좋아요 기능
+    //@PostMapping("/likes")
+
 
 }

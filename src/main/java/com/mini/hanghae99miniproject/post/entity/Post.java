@@ -31,6 +31,14 @@ public class Post extends Timestamped {
     @OneToMany(mappedBy = "post")
     private List<Comment> commentList = new ArrayList<>();
 
+    //추천수는 초기에 생성시 무조건 0으로 시작한다.
+    //0으로 설정하면 밑에 Builder 오류 발생 안한다.
+    @Column(columnDefinition = "integer default 0")
+    private Integer recommend;
+
+    @OneToMany(mappedBy = "post")
+    private List<PostLike> postLikes;
+
     @Builder
     public Post(String title, String content, Member member) {
         this.title = title;
