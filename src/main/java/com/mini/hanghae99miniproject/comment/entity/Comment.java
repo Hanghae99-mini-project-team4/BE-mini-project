@@ -4,20 +4,19 @@ package com.mini.hanghae99miniproject.comment.entity;
 import com.mini.hanghae99miniproject.common.entity.Timestamped;
 import com.mini.hanghae99miniproject.member.entity.Member;
 import com.mini.hanghae99miniproject.post.entity.Post;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+
 
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Comment extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
