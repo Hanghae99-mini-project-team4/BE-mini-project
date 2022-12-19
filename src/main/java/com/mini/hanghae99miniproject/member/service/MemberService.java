@@ -16,6 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
+import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.ADMIN_TOKEN_MISMATCH_ERROR_MSG;
+import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.DUPLICATE_USER_ERROR_MSG;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -37,12 +40,12 @@ public class MemberService {
         //회원 중복확인
         Optional<Member> found = memberRepository.findByUserid(userid);
         if(found.isPresent()) {
-            throw new IllegalArgumentException("중복된 사용자가 존재합니다");
+            throw new IllegalArgumentException(DUPLICATE_USER_ERROR_MSG.getMsg());
         }
         MemberRoleEnum role = MemberRoleEnum.MEMBER;
         if(signupRequestDto.isAdmin()){
             if(!signupRequestDto.getAdminToken().equals(ADMIN_TOKEN)){
-                throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능합니다.");
+                throw new IllegalArgumentException(ADMIN_TOKEN_MISMATCH_ERROR_MSG.getMsg());
             }
             role = MemberRoleEnum.ADMIN;
         }

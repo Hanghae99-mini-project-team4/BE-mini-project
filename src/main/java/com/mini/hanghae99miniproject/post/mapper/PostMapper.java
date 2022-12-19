@@ -1,10 +1,13 @@
 package com.mini.hanghae99miniproject.post.mapper;
 
+import com.mini.hanghae99miniproject.comment.dto.ResponseComment;
 import com.mini.hanghae99miniproject.member.entity.Member;
 import com.mini.hanghae99miniproject.post.dto.RequestPostDto;
 import com.mini.hanghae99miniproject.post.dto.ResponsePostDto;
 import com.mini.hanghae99miniproject.post.entity.Post;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class PostMapper {
@@ -39,7 +42,7 @@ public class PostMapper {
                 .nickname(post.getMember().getNickname())
                 .createdAt(post.getCreatedAt())
                 .lastModifiedAt(post.getLastModifiedAt())
-                .commentList(commentList);
+                .commentList(commentList)
                 .build();
     }
 
