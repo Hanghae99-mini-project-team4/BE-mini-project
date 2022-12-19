@@ -3,7 +3,6 @@ package com.mini.hanghae99miniproject.post.controller;
 import com.mini.hanghae99miniproject.common.response.DataResponse;
 import com.mini.hanghae99miniproject.common.response.Response;
 import com.mini.hanghae99miniproject.post.dto.RequestPostDto;
-import com.mini.hanghae99miniproject.post.dto.ResponseAllPostDto;
 import com.mini.hanghae99miniproject.post.dto.ResponsePostDto;
 import com.mini.hanghae99miniproject.post.service.PostService;
 import com.mini.hanghae99miniproject.security.UserDetailsImpl;
@@ -31,8 +30,8 @@ public class PostController {
 
     //게시글 전체 조회
     @GetMapping("")
-    public DataResponse<List<ResponseAllPostDto>> findAllPost() {
-        List<ResponseAllPostDto> response = postService.findAllPost();
+    public DataResponse<List<ResponsePostDto>> findAllPost() {
+        List<ResponsePostDto> response = postService.findAllPost();
         return new DataResponse<>(READ_POSTING_SUCCESS_MSG, response);
     }
 
