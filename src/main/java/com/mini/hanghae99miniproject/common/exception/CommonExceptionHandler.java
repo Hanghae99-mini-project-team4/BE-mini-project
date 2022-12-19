@@ -47,10 +47,16 @@ public class CommonExceptionHandler {
         BindingResult bindingResult = e.getBindingResult();
 
         for (FieldError fieldError : bindingResult.getFieldErrors()) {
-            if (fieldError.getField().equals("username")) {
-                return new ExceptionResponse(fieldError.getField() + "(은)는 최소 4 자 및 최대 10 자 하나의 소문자, 하나의 숫자가 들어가야합니다.", 400);
+            //
+            if (fieldError.getField().equals("userid")) {
+                return new ExceptionResponse(fieldError.getField() + " 필드는 이메일 형식으로 작성하셔야 합니다.", 400);
+                // 올바른 이메일 형식이 아닙니다
+                // 올바른 이메일 형식입니다.
             }
-            return new ExceptionResponse(fieldError.getField() + "최소 8 자 및 최대 15 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자가 들어가야합니다.", 400);
+            //
+            return new ExceptionResponse(fieldError.getField() + " 필드는 최소 8자 이상, 하나 이상의 대문자 또는 소문자와 하나의 숫자 및 하나의 특수 문자가 들어가야합니다.", 400);
+            // 숫자+영문자_특수문자 조합으로 8자리 이상 입력해주세요!
+            // 안전한 비밀번호 입니다.
         }
         return new ExceptionResponse(INTERNAL_SERVER_ERROR_MSG);
     }

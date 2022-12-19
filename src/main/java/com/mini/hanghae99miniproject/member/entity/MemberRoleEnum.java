@@ -5,7 +5,6 @@ public enum MemberRoleEnum {
     ADMIN(Authority.ADMIN);  // 관리자 권한, MEMBER : "ROLE_ADMIN"
 
 
-    // 스트링 처리하기 위함
     private final String authority;
     MemberRoleEnum(String authority) {
         this.authority = authority;

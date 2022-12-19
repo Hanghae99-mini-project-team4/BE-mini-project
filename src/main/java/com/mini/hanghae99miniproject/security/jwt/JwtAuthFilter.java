@@ -1,7 +1,7 @@
 package com.mini.hanghae99miniproject.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mini.hanghae99miniproject.common.response.Response;
+import com.mini.hanghae99miniproject.common.exception.ExceptionResponse;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,7 +47,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         response.setStatus(statusCode);
         response.setContentType("application/json");
         try {
-            String json = new ObjectMapper().writeValueAsString( new Response(msg,statusCode) );
+            String json = new ObjectMapper().writeValueAsString( new ExceptionResponse(msg,statusCode) );
             response.getWriter().write(json);
         } catch (Exception e) {
             log.error(e.getMessage());
