@@ -62,4 +62,16 @@ public class CommentService {
         }
         commentRepository.deleteById(commentId);
     }
+
+    //댓글 수정 전 유저 체크
+    public void checkComment(Member member, Long commentId) {
+        //댓글 존재 확인
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
+                () -> new IllegalArgumentException(ExceptionMessage.NO_EXIST_COMMENT_ERROR_MSG.getMsg())
+        );
+        //댓글 작성자와 유저 정보가 일치하는지 확인.
+        if(!comment.getMember().getId().equals(member.getId())){
+            throw new IllegalArgumentException(ExceptionMessage.USER_NOT_MATCH_ERROR_MSG.getMsg());
+        }
+    }
 }
