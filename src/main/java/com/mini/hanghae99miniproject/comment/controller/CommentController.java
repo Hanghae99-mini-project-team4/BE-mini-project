@@ -1,6 +1,7 @@
 package com.mini.hanghae99miniproject.comment.controller;
 
-import com.mini.hanghae99miniproject.comment.dto.*;
+import com.mini.hanghae99miniproject.comment.dto.RequestComment;
+import com.mini.hanghae99miniproject.comment.dto.ResponseComment;
 import com.mini.hanghae99miniproject.comment.service.CommentService;
 import com.mini.hanghae99miniproject.common.response.DataResponse;
 import com.mini.hanghae99miniproject.common.response.Response;
@@ -33,7 +34,14 @@ public class CommentController {
     @DeleteMapping("/api/posts/comments/{commentId}")
     public Response deleteComment(@AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long commentId) {
         commentService.deleteComment(userDetails.getMember(), commentId);
-        return new Response((ResponseMessage.DELETE_COMMENT_SUCCESS_MSG));
+        return new Response(ResponseMessage.DELETE_COMMENT_SUCCESS_MSG);
+    }
+
+    //댓글 수정 권한 체크
+    @GetMapping("/api/posts/comments/{commentId}/membercheck")
+    public Response checkComment(@AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long commentId) {
+        commentService.checkComment(userDetails.getMember(), commentId);
+        return new Response(ResponseMessage.CHECK_COMMENT_SUCCESS_MSG);
     }
 
 }
