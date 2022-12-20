@@ -109,16 +109,4 @@ public class PostService {
         // 게시글 삭제
         postRepository.delete(post);
     }
-
-    //게시글 수정 권한 체크
-    public void checkPost(Member member, Long postid) {
-        Post post = postRepository.findById(postid).orElseThrow(
-                () -> new IllegalArgumentException(NO_EXIST_POSTING_ERROR_MSG.getMsg())
-        );
-
-        // 게시글 작성자와 멤버 정보가 일치하는지 확인
-        if(!post.getMember().getId().equals(member.getId())) {
-            throw new IllegalArgumentException(USER_NOT_MATCH_ERROR_MSG.getMsg());
-        }
-    }
 }

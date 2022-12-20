@@ -62,17 +62,4 @@ public class CommentService {
         }
         commentRepository.deleteById(commentId);
     }
-
-    //댓글 수정 권한 체크
-    public void checkComment(Member member, Long commentId) {
-        //댓글 확인
-        Comment comment = commentRepository.findById(commentId).orElseThrow(
-                () -> new IllegalArgumentException(ExceptionMessage.NO_EXIST_COMMENT_ERROR_MSG.getMsg())
-        );
-        //토큰에 있는 멤버 정보와 comment 작성자가 같은지 확인.
-        if(!comment.getMember().getId().equals(member.getId())){
-            throw new IllegalArgumentException(ExceptionMessage.USER_NOT_MATCH_ERROR_MSG.getMsg());
-        }
-    }
-
 }
