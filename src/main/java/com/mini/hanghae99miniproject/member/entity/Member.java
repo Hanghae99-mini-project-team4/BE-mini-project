@@ -21,6 +21,8 @@ public class Member {
     @Column
     private String userid;
 
+    private Long kakaoId;
+
     @Column
     private String password;
 
@@ -42,5 +44,18 @@ public class Member {
         this.password = password;
         this.nickname = nickname;
         this.role = role;
+    }
+
+    public Member(String email, Long kakaoId, String password, String nickname, MemberRoleEnum role) {
+        this.userid = email;
+        this.kakaoId = kakaoId;
+        this.password = password;
+        this.nickname = nickname;
+        this.role = role;
+    }
+
+    public Member kakaoIdUpdate(Long kakaoId) {
+        this.kakaoId = kakaoId;
+        return this;
     }
 }
