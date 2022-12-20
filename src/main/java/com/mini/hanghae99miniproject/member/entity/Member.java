@@ -18,18 +18,19 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String userid;
 
+    @Column(nullable = true)
     private Long kakaoId;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
-    @Column
+    @Column(nullable = false)
     private String nickname;
 
-    @Column
+    @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private MemberRoleEnum role;
 
