@@ -6,14 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.ADMIN_TOKEN_MISMATCH_ERROR_MSG;
-import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.DUPLICATE_NICK_ERROR_MSG;
-import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.DUPLICATE_USER_ERROR_MSG;
-import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.INTERNAL_SERVER_ERROR_MSG;
-import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.NO_EXIST_COMMENT_ERROR_MSG;
-import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.NO_EXIST_POSTING_ERROR_MSG;
-import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.PASSWORDS_DO_NOT_MATCH_ERROR_MSG;
-import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.USER_NOT_FOUND_ERROR_MSG;
+import static com.mini.hanghae99miniproject.common.exception.ExceptionMessage.*;
 
 
 @RestControllerAdvice
@@ -41,6 +34,9 @@ public class CommonExceptionHandler {
         }
         if (e.getMessage().equals(DUPLICATE_NICK_ERROR_MSG.getMsg())) {
             return new ExceptionResponse(DUPLICATE_NICK_ERROR_MSG);
+        }
+        if (e.getMessage().equals(USER_NOT_MATCH_ERROR_MSG.getMsg())) {
+            return new ExceptionResponse(USER_NOT_MATCH_ERROR_MSG);
         }
         return new ExceptionResponse(INTERNAL_SERVER_ERROR_MSG);
     }

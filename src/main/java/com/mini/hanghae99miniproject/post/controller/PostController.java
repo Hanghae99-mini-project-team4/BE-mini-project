@@ -2,6 +2,7 @@ package com.mini.hanghae99miniproject.post.controller;
 
 import com.mini.hanghae99miniproject.common.response.DataResponse;
 import com.mini.hanghae99miniproject.common.response.Response;
+import com.mini.hanghae99miniproject.common.response.ResponseMessage;
 import com.mini.hanghae99miniproject.post.dto.RequestPostDto;
 import com.mini.hanghae99miniproject.post.dto.ResponsePostDto;
 import com.mini.hanghae99miniproject.post.service.PostService;
@@ -55,6 +56,14 @@ public class PostController {
         postService.deletePost(id, userDetails.getMember());
         return new Response(DELETE_POSTING_SUCCESS_MSG);
     }
+
+    //게시글 수정 권한 체크
+    @GetMapping("/{postid}/membercheck")
+    public Response checkPost(@AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long postid) {
+        postService.checkPost(userDetails.getMember(), postid);
+        return new Response(ResponseMessage.CHECK_POSTING_SUCCESS_MSG);
+    }
+
 
     //게시글 좋아요 기능
     //@PostMapping("/likes")

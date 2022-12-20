@@ -12,11 +12,13 @@ public enum ResponseMessage {
     CREATE_POSTING_SUCCESS_MSG(201, "포스팅 생성 성공 "),
     UPDATE_POSTING_SUCCESS_MSG(201,"포스팅 수정 성공"),
     DELETE_POSTING_SUCCESS_MSG(200,"포스팅 삭제 성공"),
+    CHECK_POSTING_SUCCESS_MSG(200, "댓글 수정 가능"),
 
     // comment
     CREATE_COMMENT_SUCCESS_MSG(201, "댓글 생성 성공"),
     UPDATE_COMMENT_SUCCESS_MSG(200, "댓글 수정 성공"),
     DELETE_COMMENT_SUCCESS_MSG(200, "댓글 삭제 성공"),
+    CHECK_COMMENT_SUCCESS_MSG(200, "댓글 수정 가능"),
 
     // user
     SIGNUP_USER_SUCCESS_MSG(201, "유저 회원가입 성공 "),
