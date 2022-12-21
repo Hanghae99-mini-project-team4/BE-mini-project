@@ -21,7 +21,7 @@ public class Member {
     @Column(nullable = false)
     private String userid;
 
-    @Column(nullable = true)
+    @Column
     private Long kakaoId;
 
     @Column(nullable = false)
