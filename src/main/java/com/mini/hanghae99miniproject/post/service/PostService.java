@@ -121,4 +121,16 @@ public class PostService {
             throw new IllegalArgumentException(USER_NOT_MATCH_ERROR_MSG.getMsg());
         }
     }
+
+
+    @Transactional(readOnly = true)
+    public List<ResponsePostDto> searchPost(String keyword) {
+        List<Post> postSearchList = postRepository.findByContentContainingIgnoreCaseOrTitleContainingIgnoreCase(keyword, keyword);
+        List<ResponsePostDto> result = new ArrayList<>();
+
+        for (Post post : postSearchList) {
+            result.add(postMapper.postToResponsePostDtoALL(post));
+        }
+        return result;
+    }
 }
