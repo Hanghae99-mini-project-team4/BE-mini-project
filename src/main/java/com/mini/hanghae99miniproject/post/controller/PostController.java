@@ -64,5 +64,9 @@ public class PostController {
         return new Response(ResponseMessage.CHECK_POSTING_SUCCESS_MSG);
     }
 
-
+    @GetMapping("/search")
+    public DataResponse<List<ResponsePostDto>> searchPost(@RequestParam("keyword") String keyword) {
+        List<ResponsePostDto> response = postService.searchPost(keyword);
+        return new DataResponse<>(READ_POSTING_SUCCESS_MSG, response);
+    }
 }
