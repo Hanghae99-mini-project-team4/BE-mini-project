@@ -12,6 +12,9 @@ public enum ResponseMessage {
     UPDATE_POSTING_SUCCESS_MSG(201,"포스팅 수정 성공"),
     DELETE_POSTING_SUCCESS_MSG(200,"포스팅 삭제 성공"),
     CHECK_POSTING_SUCCESS_MSG(200, "게시글 수정 가능"),
+    RECOMMEND_POSTING_SUCCESS_MSG(200, "게시글 추천 성공"),
+    RECOMMEND_CANCEL_POSTING_SUCCESS_MSG(200, "게시글 추천 취소 성공"),
+
 
     // comment
     CREATE_COMMENT_SUCCESS_MSG(201, "댓글 생성 성공"),

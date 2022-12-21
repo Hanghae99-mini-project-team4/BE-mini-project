@@ -18,6 +18,7 @@ public class PostMapper {
                 .title(requestDto.getTitle())
                 .content(requestDto.getContent())
                 .member(member)
+                .recommendCount(0)
                 .build();
     }
     //Entity -> Dto 게시글 전체 조회에 사용
@@ -30,6 +31,7 @@ public class PostMapper {
                 .nickname(post.getMember().getNickname())
                 .createdAt(post.getCreatedAt())
                 .lastModifiedAt(post.getLastModifiedAt())
+                .recommendCount(post.getRecommendCount())
                 .build();
     }
     // Entity -> Dto
@@ -42,6 +44,7 @@ public class PostMapper {
                 .nickname(post.getMember().getNickname())
                 .createdAt(post.getCreatedAt())
                 .lastModifiedAt(post.getLastModifiedAt())
+                .recommendCount(post.getRecommendCount())
                 .commentList(commentList)
                 .build();
     }

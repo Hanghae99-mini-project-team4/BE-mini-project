@@ -20,6 +20,7 @@ public class ResponsePostDto {
     private String nickname;
     private LocalDateTime createdAt;
     private LocalDateTime lastModifiedAt;
+    private int recommendCount;
     private List<ResponseComment> commentList;
 
 }
