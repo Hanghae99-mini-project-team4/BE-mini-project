@@ -69,4 +69,11 @@ public class PostController {
         List<ResponsePostDto> response = postService.searchPost(keyword);
         return new DataResponse<>(READ_POSTING_SUCCESS_MSG, response);
     }
+
+    //게시글 추천순 조회
+    @GetMapping("/recommend")
+    public DataResponse<List<ResponsePostDto>> findAllRecommendDesc() {
+        List<ResponsePostDto> response = postService.findAllRecommendDesc();
+        return new DataResponse<>(READ_POSTING_SUCCESS_MSG, response);
+    }
 }

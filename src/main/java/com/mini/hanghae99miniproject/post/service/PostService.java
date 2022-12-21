@@ -44,7 +44,7 @@ public class PostService {
     @Transactional(readOnly = true)
     public List<ResponsePostDto> findAllPost() {
         //DB에 저장되어있는 게시글 전부 가져오기
-        List<Post> postList = postRepository.findAll();
+        List<Post> postList = postRepository.findAllByOrderByCreatedAtDesc();
         List<ResponsePostDto> result = new ArrayList<>();
         for (Post post : postList) {
             result.add(postMapper.postToResponsePostDtoALL(post));
@@ -129,6 +129,17 @@ public class PostService {
         List<ResponsePostDto> result = new ArrayList<>();
 
         for (Post post : postSearchList) {
+            result.add(postMapper.postToResponsePostDtoALL(post));
+        }
+        return result;
+    }
+
+    //게시글 추천순 조회
+    @Transactional(readOnly = true)
+    public List<ResponsePostDto> findAllRecommendDesc() {
+        List<Post> postList = postRepository.findAllByOrderByRecommendCountDescCreatedAtDesc();
+        List<ResponsePostDto> result = new ArrayList<>();
+        for (Post post : postList) {
             result.add(postMapper.postToResponsePostDtoALL(post));
         }
         return result;
