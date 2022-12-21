@@ -48,7 +48,7 @@ public class MemberController {
         return new Response(ResponseMessage.NICK_DUBLE_CHECK_SUCCESS_MSG);
     }
     @GetMapping("/kakao")
-    public Response kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+    public Response kakaoLogin(@RequestParam("code") String code, HttpServletResponse response) throws JsonProcessingException {
         // code: 카카오 서버로부터 받은 인가 코드
         kakaoService.kakaoLogin(code, response);
         return new Response(ResponseMessage.LOGIN_USER_SUCCESS_MSG);
